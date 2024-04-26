@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 
-abstract class baseController<TBase, TCreateDto> {
+abstract class BaseController<TBase, TCreateDto> {
 
     // using serivce abtract with type any
     protected abstract service: any;
@@ -8,7 +8,7 @@ abstract class baseController<TBase, TCreateDto> {
     // implement on crud
 
     // get
-    get = async (req: Request, res: Response, next: NextFunction) => {
+    public get = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const findAllData: TBase[] = await this.service.findAll();
 
@@ -19,7 +19,7 @@ abstract class baseController<TBase, TCreateDto> {
     }
 
     // get by Id
-    getById = async (req: Request, res: Response, next: NextFunction) => {
+    public getById = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const Id: string = req.params.id;
             const findOneData: TBase = await this.service.findById(Id);
@@ -31,7 +31,7 @@ abstract class baseController<TBase, TCreateDto> {
     }
 
     // create
-    create = async (req: Request, res: Response, next: NextFunction) => {
+    public create = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const Data: TCreateDto = req.body;
             const createData: TBase = await this.service.create(Data);
@@ -43,7 +43,7 @@ abstract class baseController<TBase, TCreateDto> {
     }
 
     // update
-    update = async (req: Request, res: Response, next: NextFunction) => {
+    public update = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const Id: string = req.params.id;
             const Data: TCreateDto = req.body;
@@ -56,7 +56,7 @@ abstract class baseController<TBase, TCreateDto> {
     }
 
     // delete
-    delete = async (req: Request, res: Response, next: NextFunction) => {
+    public delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const Id: string = req.params.id;
             const deleteData: TBase = await this.service.delete(Id);
@@ -68,4 +68,4 @@ abstract class baseController<TBase, TCreateDto> {
     };
 }
 
-export default baseController;
+export default BaseController;

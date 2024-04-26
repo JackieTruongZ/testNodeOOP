@@ -5,14 +5,23 @@ import { User } from '@interfaces/users.interface';
 import { isEmpty } from '@utils/util';
 import { db } from '@/databases/db';
 import { ObjectId } from 'mongodb';
-import baseService from '@/base/base.service';
+import BaseService from '@/base/base.service';
+import UserQuery from '@/query/users.query';
 
-class UserService extends baseService<User, CreateUserDto> {
+class UserService extends BaseService<User, CreateUserDto> {
 
   protected collectionName: string = 'users';
   protected nameBase: string = 'User';
   protected attributeBase: string = 'email';
   protected listAttribute: string[] = ['email', 'password'];
+
+
+  protected query: UserQuery;
+
+  constructor() {
+    super();
+    this.query = new UserQuery();
+  }
 
 }
 
