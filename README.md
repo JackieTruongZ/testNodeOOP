@@ -4,6 +4,8 @@
 $ npm i
 $ npm run dev
 ```
+*Note :*
+open dir config/passport.ts and add client_id and secret_id 
 
 **API**
 
